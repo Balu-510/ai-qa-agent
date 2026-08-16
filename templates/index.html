@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QA Agent — Natural Language Test Parser</title>
+<meta name="description" content="Type test instructions in plain English. Watch them compile into structured test steps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wordmark"><span class="dot" aria-hidden="true"></span>QA<span class="accent">AGENT</span></div>
+  <div class="eyebrow">NATURAL LANGUAGE <span class="arrow">→</span> TEST STEPS</div>
+</header>
+
+<main class="workbench">
+
+  <section class="panel editor-panel" aria-label="Instruction input">
+    <div class="panel-head">
+      <span class="panel-title">instructions.txt</span>
+      <span class="panel-tag">INPUT</span>
+    </div>
+
+    <form id="instruction-form">
+      <div class="editor">
+        <div class="gutter" id="gutter" aria-hidden="true"><span>1</span></div>
+        <textarea
+          id="instruction"
+          name="instruction"
+          spellcheck="false"
+          autocomplete="off"
+          placeholder="open youtube&#10;click search bar&#10;username: qa_tester&#10;password: my-secret&#10;click login button"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="run-btn">
+        <span class="run-icon" aria-hidden="true">&#9654;</span> Run Parser
+      </button>
+    </form>
+
+    <p class="hint">One instruction per line. Recognized verbs: <code>open</code>, <code>click</code>, <code>username</code>, <code>password</code>.</p>
+  </section>
+
+  <section class="panel console-panel" aria-label="Parsed output">
+    <div class="panel-head">
+      <span class="panel-title">build.log</span>
+      <span class="panel-tag" id="status-tag">IDLE</span>
+    </div>
+
+    <div class="console" id="console">
+      <div class="console-empty" id="console-empty">Waiting for instructions<span class="cursor">_</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span>Balu-510 / ai-qa-agent</span>
+  <span class="foot-sep">·</span>
+  <span>Flask + vanilla JS</span>
+</footer>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
